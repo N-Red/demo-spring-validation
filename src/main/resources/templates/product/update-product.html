@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+</head>
+<body>
+<h1>Update Page</h1>
+<div th:object="${product}">
+    <form method="post" th:action="@{/product/update/{productId}(productId=${product.productId})}"
+          th:object="${productUpdateForm}">
+
+        <input type="text" th:field="${productUpdateForm.name}" th:attr="placeholder=${product.name}">
+        <div th:if="${#fields.hasErrors('name')}" th:errors="${productUpdateForm.name}">Name Error</div>
+
+
+        <input type="number" th:field="${productUpdateForm.price}" th:attr="placeholder=${product.price}">
+        <div th:if="${#fields.hasErrors('price')}" th:errors="${productUpdateForm.price}">Price Error</div>
+
+        <button type="submit">Update</button>
+    </form>
+    <form method="delete" th:action="@{/product/delete/{productId}(productId=${product.productId})}">
+        <button type="submit">Delete</button>
+    </form>
+</div>
+
+
+<a th:href="@{/products}">Product List</a>
+<a th:href="@{/createProduct}">Create Product</a>
+
+</body>
+</html>

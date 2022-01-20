@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+<h1>Product List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Element</th>
+        <th>Buttons</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product: ${products}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"/>
+        </td>
+        <td th:text="${product.element}"/>
+        </td>
+        <td>
+            <a th:href="@{/product/{productId}(productId=${product.productId})}">Show</a>
+            <a th:href="@{/product/update/{productId}(productId=${product.productId})}">Update</a>
+            <a th:href="@{/product/delete/{productId}(productId=${product.productId})}">Delete</a>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<div th:if="${products.empty}">No Products</div>
+<a th:href="@{/createProduct}">Create Product</a>
+</body>
+</html>

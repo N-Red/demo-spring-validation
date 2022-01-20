@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+</head>
+<body>
+
+<h1>Product Page</h1>
+
+<div th:if="${product != null}">
+    <div th:object="${product}">
+        <div>Name</div>
+        <div th:text="${product.name}"></div>
+        <div>Price</div>
+        <div th:text="${product.price}"></div>
+        <div>Element</div>
+        <div th:if="${product.element == null}">
+            Null
+        </div>
+        <div th:unless="${product.element == null}">
+            <div th:text="${product.element}"></div>
+        </div>
+
+    </div>
+</div>
+<div th:unless="${product != null}">
+    No product find with this id.
+</div>
+
+<a th:href="@{/products}">Product List</a>
+<a th:href="@{/createProduct}">Create Product</a>
+</body>
+</html>
